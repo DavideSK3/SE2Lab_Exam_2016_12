@@ -1,9 +1,9 @@
 swagger: '2.0'
 info:
-  title: Students WS
+  title: Students Project, Davide Belli
   description: A web services for the management of students
   version: "1.0.0"
-host: myserver.it
+host: localhost:5000
 schemes:
   - https
 basePath: /
@@ -72,6 +72,51 @@ paths:
                 type: integer
         404:
           description: no students with that ID or SSN
+  
+  /addStudent:
+    post:
+      summary: add a student
+      description: it adds the student, given his/her ID , SSN, name, address, mark
+      parameters:
+        - name: ID
+          in: formData
+          description: ID of the student
+          required: false
+          type: string
+        - name: SSN
+          in: formData
+          description: SSN of the student
+          required: false
+          type: string
+        - name: Name
+          in: formData
+          description: Name of the student
+          required: false
+          type: string
+        - name: Address
+          in: formData
+          description: Address of the student
+          required: false
+          type: string
+        - name: Mark
+          in: formData
+          description: Mark of the student
+          required: false
+          type: string
+      responses:
+        200:
+          description: name of the student
+          schema: 
+            $ref: "#/definitions/student"
+        406:
+          description: unacceptable input
+          schema: 
+            properties:
+              error:
+                type: integer
+        404:
+          description: students is null
+
             
   /searchByMark:
     post:
@@ -106,4 +151,3 @@ definitions:
       address:
         type: string
         description: address of the student
-
