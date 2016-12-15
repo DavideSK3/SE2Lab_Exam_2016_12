@@ -135,6 +135,31 @@ var insertStudent = function insertStudent(student)
 
 //AGGIUNGERE QUI SOTTO NUOVE FUNZIONI
 
+var searchStudentByMark = function searchStudentByMark(criteria)
+{	
+	var num= criteria.charAt(1);
+	var res_list=[];
+	if(criteria.charAt(0=='<')){
+		for (i=0; i < studentList.length; i++){
+			if (studentList[i].mark< num)
+			{
+				res_list.push(studentList[i]);
+			}
+		}
+		return res_list;
+	}else if (criteria.charAt(0=='>')){
+		for (i=0; i < studentList.length; i++){
+			if (studentList[i].mark> num)
+			{
+				res_list.push(studentList[i]);
+			}
+		}
+		return res_list;
+	}
+    //if reach this point return null
+    return null;
+}
+
 
 
 //export functions
@@ -144,3 +169,4 @@ exports.deleteStudentID = deleteStudentID;
 exports.deleteStudentSSN = deleteStudentSSN; 
 exports.insertStudent = insertStudent;  
 exports.getList = getList; 
+exports.searchStudentByMark = searchStudentByMark; 
